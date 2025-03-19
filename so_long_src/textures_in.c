@@ -6,7 +6,7 @@
 /*   By: riel-fas <riel-fas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 14:33:11 by riel-fas          #+#    #+#             */
-/*   Updated: 2025/03/18 15:00:53 by riel-fas         ###   ########.fr       */
+/*   Updated: 2025/03/19 10:55:06 by riel-fas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,15 @@ void load_assets(t_game *game)
     // int max_tiles = game->map.width * game->map.height;
 
     // Load player sprite
-    texture = mlx_load_png("textures/player/frame66.png");
+    texture = mlx_load_png("textures/player/golden_death.png");
     if (!texture)
         exit_with_error("ERROR: Failed to load player sprite.");
     game->player_img = mlx_texture_to_image(game->mlx, texture);
     mlx_delete_texture(texture);
 
     // Load wall sprite - create with enough instances
-    texture = mlx_load_png("textures/1/wall2.png");
+    // texture = mlx_load_png("textures/1/wall2.png");
+    texture = mlx_load_png("textures/1/mainfloorx64.png");
     if (!texture)
         exit_with_error("ERROR: Failed to load wall sprite.");
     game->wall_img = mlx_texture_to_image(game->mlx, texture);
@@ -66,7 +67,7 @@ void load_assets(t_game *game)
     game->wall_count = 0;
 
     // Load collectible sprite
-    texture = mlx_load_png("textures/collectibles/coin_gold1.png");
+    texture = mlx_load_png("textures/collectibles/green_crystal_0000.png");
     if (!texture)
         exit_with_error("ERROR: Failed to load collectible sprite.");
     game->collectible_img = mlx_texture_to_image(game->mlx, texture);
@@ -74,7 +75,7 @@ void load_assets(t_game *game)
     game->collectible_count = 0;
 
     // Load exit sprite
-    texture = mlx_load_png("textures/1/wall4.png");
+    texture = mlx_load_png("textures/exit/floorx643333.png");
     if (!texture)
         exit_with_error("ERROR: Failed to load exit sprite.");
     game->exit_img = mlx_texture_to_image(game->mlx, texture);
@@ -82,7 +83,8 @@ void load_assets(t_game *game)
     game->exit_count = 0;
 
     // Load floor sprite
-    texture = mlx_load_png("textures/0/tile_004055.png");
+    texture = mlx_load_png("textures/0/mainlevbuildx64.png");
+    // texture = mlx_load_png("textures/0/tile_004055.png");
     if (!texture)
         exit_with_error("ERROR: Failed to load floor sprite.");
     game->floor_img = mlx_texture_to_image(game->mlx, texture);

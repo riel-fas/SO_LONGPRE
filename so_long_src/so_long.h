@@ -6,7 +6,7 @@
 /*   By: riel-fas <riel-fas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 08:18:36 by riel-fas          #+#    #+#             */
-/*   Updated: 2025/03/18 15:00:08 by riel-fas         ###   ########.fr       */
+/*   Updated: 2025/03/19 08:48:40 by riel-fas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 
 # include "../MLX42/include/MLX42/MLX42.h"
-// # include "/home/riad/MLX42/include/MLX42/MLX42.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
