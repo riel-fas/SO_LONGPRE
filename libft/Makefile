@@ -53,7 +53,6 @@ OBJB = $(SRCB:.c=.o)
 
 AR = ar rcs
 
-FT_PRINTF = ft_printf/libftprintf.a
 
 all: ${NAME}
 
@@ -66,22 +65,13 @@ $(NAME): $(OBJ)
 bonus: $(OBJB)
 	$(AR) $(NAME) $(OBJB)
 
-# Rule to compile ft_printf and include it in libft
-printf: $(FT_PRINTF)
-	make -C ft_printf
-	cp $(FT_PRINTF) ./$(NAME)
-	$(AR) $(NAME) $(OBJ)
-
-$(FT_PRINTF):
-	make -C ft_printf
-
 clean:
 	rm -rf $(OBJ) $(OBJB)
-	make clean -C ft_printf
+# make clean -C ft_printf
 
 fclean: clean
 	rm -rf $(NAME)
-	make fclean -C ft_printf
+# make fclean -C ft_printf
 
 re: fclean all
 
