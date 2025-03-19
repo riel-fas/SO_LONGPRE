@@ -3,52 +3,63 @@
 /*                                                        :::      ::::::::   */
 /*   key_press.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: riel-fas <riel-fas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: riel-fas <riel-fas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 14:38:04 by riel-fas          #+#    #+#             */
-/*   Updated: 2025/03/19 14:48:34 by riel-fas         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:24:46 by riel-fas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void move_player(t_game *game, int dx, int dy)
+static int	is_valid_move(t_game *game, int new_x, int new_y)
 {
-	int	new_x;
-	int	new_y;
+	if (new_x < 0 || new_x >= game->map.width || new_y < 0
+		|| new_y >= game->map.height || game->map.grid[new_y][new_x] == '1')
+		return (0);
+	return (1);
+}
 
-	new_x = game->map.player_x + dx;
-	new_y = game->map.player_y + dy;
-	if (new_x < 0 || new_x >= game->map.width || new_y < 0 || new_y >= game->map.height)
-		return;
-	if (game->map.grid[new_y][new_x] == '1')
-		return;
+static int	handle_tile(t_game *game, int new_x, int new_y)
+{
 	if (game->map.grid[new_y][new_x] == 'C')
 	{
 		game->map.collected++;
 		game->map.grid[new_y][new_x] = '0';
 	}
-	if (game->map.grid[new_y][new_x] == 'E')
+	else if (game->map.grid[new_y][new_x] == 'E')
 	{
 		if (game->map.collected == game->map.collectibles)
 		{
-            ft_printf("You win! Moves: %d\n", game->moves + 1);
+			ft_printf("You win! Moves: %d\n", game->moves + 1);
 			mlx_close_window(game->mlx);
-			return;
+			return (0);
 		}
 		else
 		{
 			write(1, "Collect all collectibles before exiting!\n", 41);
-			return;
+			return (0);
 		}
 	}
+	return (1);
+}
+
+void	move_player(t_game *game, int dx, int dy)
+{
+	int	new_x = game->map.player_x + dx;
+	int	new_y = game->map.player_y + dy;
+
+	if (!is_valid_move(game, new_x, new_y))
+		return ;
+	if (!handle_tile(game, new_x, new_y))
+		return ;
 	game->map.grid[game->map.player_y][game->map.player_x] = '0';
 	game->map.player_x = new_x;
 	game->map.player_y = new_y;
-	game->map.grid[new_y][new_x] = 'P'; // Set new position
+	game->map.grid[new_y][new_x] = 'P';
 	game->moves++;
 	update_render_map(game);
-    ft_printf("Player moved to (%d, %d). Moves: %d\n", new_x, new_y, game->moves);
+	ft_printf("Player moved to (%d, %d). Moves: %d\n", new_x, new_y, game->moves);
 }
 
 void handle_keypress(mlx_key_data_t keydata, void *param)
@@ -70,109 +81,20 @@ void handle_keypress(mlx_key_data_t keydata, void *param)
 	}
 }
 
-void render_map(t_game *game)
-{
-    int	x;
-	int	y;
-    // int wall_count = 0;
-    // int collectible_count = 0;
-    // int exit_count = 0;
-    // First, add all floor tiles to window
-	y = 0;
-	while (y < game->map.height)
-	{
-		x = 0;
-		while (x < game->map.width)
-		{
-			mlx_image_to_window(game->mlx, game->floor_img, x * TILE_SIZE, y * TILE_SIZE);
-			x++;
-		}
-		y++;
-    }
-
-    // Then add wall, collectible, exit and player tiles
-	y = 0;
-	while (y < game->map.height)
-	{
-		x = 0;
-        while (x < game->map.width)
-		{
-            if (game->map.grid[y][x] == '1')
-			{
-                mlx_image_to_window(game->mlx, game->wall_img, x * TILE_SIZE, y * TILE_SIZE);
-                game->wall_count++;
-            }
-			else if (game->map.grid[y][x] == 'C')
-			{
-                mlx_image_to_window(game->mlx, game->collectible_img, x * TILE_SIZE, y * TILE_SIZE);
-                game->collectible_count++;
-            }
-			else if (game->map.grid[y][x] == 'E')
-			{
-				mlx_image_to_window(game->mlx, game->exit_img, x * TILE_SIZE, y * TILE_SIZE);
-				game->exit_count++;
-			}
-			else if (game->map.grid[y][x] == 'P')
-				game->player_instance = mlx_image_to_window(game->mlx, game->player_img, x * TILE_SIZE, y * TILE_SIZE);
-			x++;
-		}
-		y++;
-	}
-
-    ft_printf("Map initialized with %d walls, %d collectibles, %d exits\n",game->wall_count, game->collectible_count, game->exit_count);
-}
-
-void update_render_map(t_game *game)
-{
-	int	x;
-	int	y;
-	int collectible_idx;
-
-	collectible_idx = 0;
-	game->player_img->instances[0].x = game->map.player_x * TILE_SIZE;
-	game->player_img->instances[0].y = game->map.player_y * TILE_SIZE;
-	y = 0;
-	while (y < game->map.height)
-	{
-		x = 0;
-		while (x < game->map.width)
-		{
-			if (game->map.grid[y][x] == 'C' && collectible_idx < game->collectible_count)
-			{
-				game->collectible_img->instances[collectible_idx].enabled = true;
-				collectible_idx++;
-			}
-			else if (game->map.grid[y][x] == '0' && collectible_idx < game->collectible_count)
-			{
-                // Check if this was previously a collectible location
-				if (game->collectible_img->instances[collectible_idx].x == x * TILE_SIZE && game->collectible_img->instances[collectible_idx].y == y * TILE_SIZE)
-				{
-					game->collectible_img->instances[collectible_idx].enabled = false;
-					collectible_idx++;
-				}
-			}
-			x++;
-		}
-		y++;
-	}
-}
-
 void game_loop(void *param)
 {
 	t_game *game = (t_game *)param;
 	static int last_move_time = 0;
 	int current_time;
 
-    // Get current time (a simple frame counter will do)
 	current_time = mlx_get_time() * 1000; // Convert to milliseconds
     // Limit movement to avoid too fast repeated movements
 	if (current_time - last_move_time < 100) // 100ms delay between moves
-		return;
-    // Handle key inputs - only process one at a time with priority
+		return ;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 	{
 		mlx_close_window(game->mlx);
-		return;
+		return ;
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
 	{
@@ -193,5 +115,5 @@ void game_loop(void *param)
 	{
 		move_player(game, 1, 0);
 		last_move_time = current_time;
-    }
+	}
 }
