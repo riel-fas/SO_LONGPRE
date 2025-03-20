@@ -87,15 +87,19 @@ re: clean all
 # LIBS = $(MLX_LIB) -L $(GLFW_LIB) -lglfw -ldl -pthread -lm
 
 # SRCS	=	so_long_src/main.c \
+# 			so_long_src/map_pars.c \
+# 			so_long_src/map_pars_2.c \
 # 			so_long_src/map_render.c \
-#             so_long_src/map_pars.c \
+# 			so_long_src/map_render_2.c \
 # 			so_long_src/key_press.c \
 # 			so_long_src/textures_in.c \
 # 			so_long_src/map_valid.c \
+# 			so_long_src/map_valid_2.c \
 # 			so_long_src/errors_handl.c \
-#             libft/get_next_line/get_next_line.c \
-#             libft/get_next_line/get_next_line_utils.c \
-# 			ft_printf/libftprintf.a
+# 			so_long_src/game_loop.c \
+# 			libft/get_next_line/get_next_line.c \
+# 			libft/get_next_line/get_next_line_utils.c \
+#  			ft_printf/libftprintf.a
 
 # OBJS	= ${SRCS:.c=.o}
 
