@@ -6,7 +6,7 @@
 /*   By: riel-fas <riel-fas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 08:18:36 by riel-fas          #+#    #+#             */
-/*   Updated: 2025/03/20 09:16:04 by riel-fas         ###   ########.fr       */
+/*   Updated: 2025/03/20 12:57:36 by riel-fas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,13 @@ void		exit_with_error(char *message);
 int			handle_window_close(t_game *game);
 void		load_assets(t_game *game);
 void		game_loop(void *param);
+void		handle_movement(t_game *game, int current, int *last_move);
+int			read_map_content(t_game *game, char *map_path);
+void		render_map_elements(t_game *game, int x, int y);
+char		**allocate_temp_map(t_game *game);
+void		copy_map(t_game *game, char **temp_map);
+char		**create_temp_map(t_game *game);
+int			check_path(t_game *game);
+void		flood_fill(char **map, int x, int y, int *count);
 
 #endif

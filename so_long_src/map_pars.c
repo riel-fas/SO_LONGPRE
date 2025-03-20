@@ -6,7 +6,7 @@
 /*   By: riel-fas <riel-fas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 08:37:55 by riel-fas          #+#    #+#             */
-/*   Updated: 2025/03/17 12:19:20 by riel-fas         ###   ########.fr       */
+/*   Updated: 2025/03/20 11:32:24 by riel-fas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,11 @@ static int	map_dimensions(t_game *game, char *map_path)
 
 	fd = open(map_path, O_RDONLY);
 	if (fd < 0)
-	{
-		write(2, "ERROR OPENING MAP FILE\n", 23);
-		exit(EXIT_FAILURE);
-	}
+		exit_with_error("ERROR OPENING MAP FILE");
 	game->map.width = 0;
 	game->map.height = 0;
-	while ((line = get_next_line(fd)) != NULL)
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
 		width = 0;
 		while (line[width] && line[width] != '\n')
@@ -35,6 +33,7 @@ static int	map_dimensions(t_game *game, char *map_path)
 			game->map.width = width;
 		game->map.height++;
 		free(line);
+		line = get_next_line(fd);
 	}
 	close (fd);
 	if (game->map.width <= 0 || game->map.height <= 0)
@@ -66,58 +65,38 @@ static int	map_alloc(t_game *game)
 	return (1);
 }
 
-static int	read_map_content(t_game *game, char *map_path)
-{
-	int		x;
-	int		y;
-	int		fd;
-	char	*line;
-
-	fd = open(map_path, O_RDONLY);
-	if (fd < 0)
-		return (0);
-	x = 0;
-	while ((line = get_next_line(fd)) != NULL && x < game->map.height)
-	{
-		y = 0;
-		while (line[y] && line[y] != '\n' && y < game->map.width)
-		{
-			game->map.grid[x][y] = line[y];
-			y++;
-		}
-		while (y < game->map.width)
-			game->map.grid[x][y++] = ' ';
-		game->map.grid[x][y] = '\0';
-		free(line);
-		x++;
-	}
-	close (fd);
-	x = game->map.height;
-	return (x);
-}
-
-int parse_map(t_game *game, char *map_path)
+static int	init_map_data(t_game *game)
 {
 	game->map.collectibles = 0;
 	game->map.collected = 0;
 	game->map.exit = 0;
 	game->map.player = 0;
-	if (!map_dimensions(game, map_path))
-	{
+	return (1);
+}
+
+static int	handle_map_errors(t_game *game, int error_code)
+{
+	if (error_code == 1)
 		write(2, "Error\nFailed to read map file\n", 30);
-		return (0);
-	}
-	if (!map_alloc(game))
-	{
+	else if (error_code == 2)
 		write(2, "Error\nMemory allocation failed\n", 31);
-		return (0);
-	}
-	if (!read_map_content(game, map_path))
-	{
+	else if (error_code == 3)
 		write(2, "Error\nFailed to read map content\n", 33);
-		free_game(game); // You'll need to implement this function
+	if (error_code == 2 || error_code == 3)
+		free_game(game);
+	return (0);
+}
+
+int	parse_map(t_game *game, char *map_path)
+{
+	if (!init_map_data(game))
 		return (0);
-	}
+	if (!map_dimensions(game, map_path))
+		return (handle_map_errors(game, 1));
+	if (!map_alloc(game))
+		return (handle_map_errors(game, 2));
+	if (!read_map_content(game, map_path))
+		return (handle_map_errors(game, 3));
 	if (!validate_map(game))
 	{
 		free_game(game);
