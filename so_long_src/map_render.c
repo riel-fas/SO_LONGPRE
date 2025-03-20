@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_render.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: riel-fas <riel-fas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: riel-fas <riel-fas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:22:25 by riel-fas          #+#    #+#             */
-/*   Updated: 2025/03/20 08:13:18 by riel-fas         ###   ########.fr       */
+/*   Updated: 2025/03/20 08:37:24 by riel-fas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,31 +68,37 @@ static void	update_player_position(t_game *game)
     game->player_img->instances[0].y = game->map.player_y * TILE_SIZE;
 }
 
-static void	update_collectibles(t_game *game)
+static void update_collectibles(t_game *game)
 {
-    int	x;
-    int	y;
-    int	collectible_idx;
+    int x;
+    int y;
+    size_t instance_idx = 0;
 
-    collectible_idx = 0;
+    while (instance_idx < game->collectible_img->count)
+    {
+        game->collectible_img->instances[instance_idx].enabled = false;
+		instance_idx++;
+    }
     y = 0;
     while (y < game->map.height)
     {
         x = 0;
         while (x < game->map.width)
         {
-            if (game->map.grid[y][x] == 'C' && collectible_idx < game->collectible_count)
+            if (game->map.grid[y][x] == 'C')
             {
-                game->collectible_img->instances[collectible_idx].enabled = true;
-                collectible_idx++;
-            }
-            else if (game->map.grid[y][x] == '0' && collectible_idx < game->collectible_count)
-            {
-                if (game->collectible_img->instances[collectible_idx].x == x * TILE_SIZE
-                    && game->collectible_img->instances[collectible_idx].y == y * TILE_SIZE)
+                // Find an available instance to show the collectible
+                instance_idx = 0;
+				while (instance_idx < game->collectible_img->count)
                 {
-                    game->collectible_img->instances[collectible_idx].enabled = false;
-                    collectible_idx++;
+                    if (!game->collectible_img->instances[instance_idx].enabled)
+                    {
+                        game->collectible_img->instances[instance_idx].x = x * TILE_SIZE;
+                        game->collectible_img->instances[instance_idx].y = y * TILE_SIZE;
+                        game->collectible_img->instances[instance_idx].enabled = true;
+                        break;
+                    }
+					instance_idx++;
                 }
             }
             x++;

@@ -6,7 +6,7 @@
 /*   By: riel-fas <riel-fas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 14:38:04 by riel-fas          #+#    #+#             */
-/*   Updated: 2025/03/19 15:24:46 by riel-fas         ###   ########.fr       */
+/*   Updated: 2025/03/20 08:33:55 by riel-fas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ static int	handle_tile(t_game *game, int new_x, int new_y)
 {
 	if (game->map.grid[new_y][new_x] == 'C')
 	{
-		game->map.collected++;
-		game->map.grid[new_y][new_x] = '0';
+	    game->map.collected++;
+	    game->map.grid[new_y][new_x] = '0';
+	    update_render_map(game);  // Add this line
 	}
 	else if (game->map.grid[new_y][new_x] == 'E')
 	{

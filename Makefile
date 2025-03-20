@@ -2,9 +2,10 @@ NAME	= so_long
 CC		= cc -g
 CFLAGS	= -Wextra -Wall -Werror -fsanitize=address
 
-LIBMLX	= /Users/riel-fas/Desktop/SSSLLL/MLX42
+# LIBMLX	= /Users/riel-fas/Desktop/SSSLLL/MLX42
+LIBMLX	= /MLX42
 MLX_INCLUDE	= $(LIBMLX)/include/MLX42
-MLX_LIB	= $(LIBMLX)/build/libmlx42.a
+MLX_LIB	= MLX42/build/libmlx42.a
 
 GLFW_INCLUDE = /Users/riel-fas/.brew/include
 GLFW_LIB = /Users/riel-fas/.brew/lib
