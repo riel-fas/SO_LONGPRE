@@ -3,9 +3,9 @@ CC		= cc -g
 CFLAGS	= -Wextra -Wall -Werror -fsanitize=address
 
 # LIBMLX	= /Users/riel-fas/Desktop/SSSLLL/MLX42
-LIBMLX	= /MLX42
+LIBMLX	= /Users/riel-fas/Desktop/SSSLLL/MLX42
 MLX_INCLUDE	= $(LIBMLX)/include/MLX42
-MLX_LIB	= MLX42/build/libmlx42.a
+MLX_LIB	= $(LIBMLX)/build/libmlx42.a
 
 GLFW_INCLUDE = /Users/riel-fas/.brew/include
 GLFW_LIB = /Users/riel-fas/.brew/lib
@@ -68,9 +68,9 @@ re: clean all
 # CC		= cc -g
 # CFLAGS	= -Wextra -Wall -Werror -fsanitize=address
 
-# LIBMLX	= /home/riad/MLX42
+# LIBMLX	= /MLX42
 # MLX_INCLUDE	= $(LIBMLX)/include/MLX42
-# MLX_LIB	= $(LIBMLX)/build/libmlx42.a
+# MLX_LIB	= MLX42/build/libmlx42.a
 
 # GLFW_INCLUDE = /home/linuxbrew/.linuxbrew/include
 # GLFW_LIB = /home/linuxbrew/.linuxbrew/lib
@@ -80,7 +80,7 @@ re: clean all
 # LIBFT	= libft/libft.a
 # FT_PRINTF = ft_printf/libftprintf.a
 
-# LIBS = $(MLX_LIB) -L $(GLFW_LIB) -lglfw -ldl -pthread -lm -fsanitize=address
+# LIBS = $(MLX_LIB) -L $(GLFW_LIB) -lglfw -ldl -pthread -lm
 
 # SRCS	=	so_long_src/main.c \
 # 			so_long_src/map_render.c \

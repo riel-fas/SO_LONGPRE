@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: riel-fas <riel-fas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: riel-fas <riel-fas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 08:18:36 by riel-fas          #+#    #+#             */
-/*   Updated: 2025/03/20 08:51:36 by riel-fas         ###   ########.fr       */
+/*   Updated: 2025/03/20 09:16:04 by riel-fas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,26 +27,26 @@
 
 typedef struct s_img
 {
-	void		*img;
-	char		*addr;
-	int			bits_per_pixel;
-	int			line_length;
-	int			endian;
-	int			width;
-	int			height;
+	void			*img;
+	char			*addr;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+	int				width;
+	int				height;
 }		t_img;
 
 typedef struct s_map
 {
-	char		**grid;
-	int			width;
-	int			height;
-	int			collectibles;
-	int			collected;
-	int			exit;
-	int			player;
-	int			player_x;
-	int			player_y;
+	char			**grid;
+	int				width;
+	int				height;
+	int				collectibles;
+	int				collected;
+	int				exit;
+	int				player;
+	int				player_x;
+	int				player_y;
 }		t_map;
 
 typedef struct s_game
