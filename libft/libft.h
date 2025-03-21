@@ -6,7 +6,7 @@
 /*   By: riel-fas <riel-fas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 11:54:07 by riel-fas          #+#    #+#             */
-/*   Updated: 2025/03/21 09:58:34 by riel-fas         ###   ########.fr       */
+/*   Updated: 2025/03/21 15:01:45 by riel-fas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdint.h>
-
-
-
-
 
 typedef struct s_list
 {

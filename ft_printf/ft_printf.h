@@ -6,7 +6,7 @@
 /*   By: riel-fas <riel-fas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:21:26 by riel-fas          #+#    #+#             */
-/*   Updated: 2025/03/21 09:59:37 by riel-fas         ###   ########.fr       */
+/*   Updated: 2025/03/21 15:01:23 by riel-fas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <stdarg.h>
 # include <unistd.h>
-
 
 int	ft_printf(const char *str, ...);
 int	ft_char(char c);

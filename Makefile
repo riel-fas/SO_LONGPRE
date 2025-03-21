@@ -16,17 +16,17 @@
 
 # LIBS = $(MLX_LIB) -L $(GLFW_LIB) -lglfw -ldl -pthread -lm
 
-# SRCS	=	so_long_src/main.c \
-# 			so_long_src/map_pars.c \
-# 			so_long_src/map_pars_2.c \
-# 			so_long_src/map_render.c \
-# 			so_long_src/map_render_2.c \
-# 			so_long_src/key_press.c \
-# 			so_long_src/textures_in.c \
-# 			so_long_src/map_valid.c \
-# 			so_long_src/map_valid_2.c \
-# 			so_long_src/errors_handl.c \
-# 			so_long_src/game_loop.c \
+# SRCS	=	so_long_src_mandatory/main.c \
+# 			so_long_src_mandatory/map_pars.c \
+# 			so_long_src_mandatory/map_pars_2.c \
+# 			so_long_src_mandatory/map_render.c \
+# 			so_long_src_mandatory/map_render_2.c \
+# 			so_long_src_mandatory/key_press.c \
+# 			so_long_src_mandatory/textures_in.c \
+# 			so_long_src_mandatory/map_valid.c \
+# 			so_long_src_mandatory/map_valid_2.c \
+# 			so_long_src_mandatory/errors_handl.c \
+# 			so_long_src_mandatory/game_loop.c \
 # 			libft/get_next_line/get_next_line.c \
 # 			libft/get_next_line/get_next_line_utils.c \
 # 			ft_printf/libftprintf.a
@@ -85,17 +85,17 @@
 
 # # LIBS = $(MLX_LIB) -L $(GLFW_LIB) -lglfw -ldl -pthread -lm
 
-# # SRCS	=	so_long_src/main.c \
-# # 			so_long_src/map_pars.c \
-# # 			so_long_src/map_pars_2.c \
-# # 			so_long_src/map_render.c \
-# # 			so_long_src/map_render_2.c \
-# # 			so_long_src/key_press.c \
-# # 			so_long_src/textures_in.c \
-# # 			so_long_src/map_valid.c \
-# # 			so_long_src/map_valid_2.c \
-# # 			so_long_src/errors_handl.c \
-# # 			so_long_src/game_loop.c \
+# # SRCS	=	so_long_src_mandatory/main.c \
+# # 			so_long_src_mandatory/map_pars.c \
+# # 			so_long_src_mandatory/map_pars_2.c \
+# # 			so_long_src_mandatory/map_render.c \
+# # 			so_long_src_mandatory/map_render_2.c \
+# # 			so_long_src_mandatory/key_press.c \
+# # 			so_long_src_mandatory/textures_in.c \
+# # 			so_long_src_mandatory/map_valid.c \
+# # 			so_long_src_mandatory/map_valid_2.c \
+# # 			so_long_src_mandatory/errors_handl.c \
+# # 			so_long_src_mandatory/game_loop.c \
 # # 			libft/get_next_line/get_next_line.c \
 # # 			libft/get_next_line/get_next_line_utils.c \
 # #  			ft_printf/libftprintf.a
@@ -134,6 +134,7 @@
 
 
 NAME	= so_long
+BONUS	= so_long_bonus
 CC		= cc
 CFLAGS	= -Wextra -Wall -Werror
 
@@ -144,25 +145,25 @@ MLX_LIB	= $(LIBMLX)/build/libmlx42.a
 GLFW_INCLUDE = /Users/riel-fas/.brew/include
 GLFW_LIB = /Users/riel-fas/.brew/lib
 
-HEADERS	= -I ./so_long_src -I $(MLX_INCLUDE) -I $(GLFW_INCLUDE)
-HEADER_FILES = so_long_src/so_long.h
+HEADERS	= -I ./so_long_src_mandatory -I $(MLX_INCLUDE) -I $(GLFW_INCLUDE)
+HEADER_FILES = so_long_src_mandatory/so_long.h
 
 LIBFT	= libft/libft.a
 FT_PRINTF = ft_printf/libftprintf.a
 
 LIBS = $(MLX_LIB) $(LIBFT) $(FT_PRINTF) -L $(GLFW_LIB) -lglfw -ldl -pthread -lm
 
-SRCS	=	so_long_src/main.c \
-			so_long_src/map_pars.c \
-			so_long_src/map_pars_2.c \
-			so_long_src/map_render.c \
-			so_long_src/map_render_2.c \
-			so_long_src/key_press.c \
-			so_long_src/textures_in.c \
-			so_long_src/map_valid.c \
-			so_long_src/map_valid_2.c \
-			so_long_src/errors_handl.c \
-			so_long_src/game_loop.c \
+SRCS	=	so_long_src_mandatory/main.c \
+			so_long_src_mandatory/map_pars.c \
+			so_long_src_mandatory/map_pars_2.c \
+			so_long_src_mandatory/map_render.c \
+			so_long_src_mandatory/map_render_2.c \
+			so_long_src_mandatory/key_press.c \
+			so_long_src_mandatory/textures_in.c \
+			so_long_src_mandatory/map_valid.c \
+			so_long_src_mandatory/map_valid_2.c \
+			so_long_src_mandatory/errors_handl.c \
+			so_long_src_mandatory/game_loop.c \
 			libft/get_next_line/get_next_line.c \
 			libft/get_next_line/get_next_line_utils.c
 
