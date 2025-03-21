@@ -6,7 +6,7 @@
 /*   By: riel-fas <riel-fas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 08:24:15 by riel-fas          #+#    #+#             */
-/*   Updated: 2025/03/20 10:14:36 by riel-fas         ###   ########.fr       */
+/*   Updated: 2025/03/21 11:00:05 by riel-fas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,9 @@ int	main(int argc, char **argv)
 	}
 	init_game(&game);
 	mlx_loop(game.mlx);
+	free_game(&game);
+
+	// system("leaks -q so_long");
+
 	return (0);
 }

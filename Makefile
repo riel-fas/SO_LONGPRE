@@ -1,83 +1,13 @@
-NAME	= so_long
-CC		= cc -g
-CFLAGS	= -Wextra -Wall -Werror -fsanitize=address
-
-# LIBMLX	= /Users/riel-fas/Desktop/SSSLLL/MLX42
-LIBMLX	= /Users/riel-fas/Desktop/SSSLLL/MLX42
-MLX_INCLUDE	= $(LIBMLX)/include/MLX42
-MLX_LIB	= $(LIBMLX)/build/libmlx42.a
-
-GLFW_INCLUDE = /Users/riel-fas/.brew/include
-GLFW_LIB = /Users/riel-fas/.brew/lib
-
-HEADERS	= -I ./include -I $(MLX_INCLUDE) -I $(GLFW_INCLUDE)
-
-LIBFT	= libft/libft.a
-FT_PRINTF = ft_printf/libftprintf.a
-
-LIBS = $(MLX_LIB) -L $(GLFW_LIB) -lglfw -ldl -pthread -lm
-
-SRCS	=	so_long_src/main.c \
-			so_long_src/map_pars.c \
-			so_long_src/map_pars_2.c \
-			so_long_src/map_render.c \
-			so_long_src/map_render_2.c \
-			so_long_src/key_press.c \
-			so_long_src/textures_in.c \
-			so_long_src/map_valid.c \
-			so_long_src/map_valid_2.c \
-			so_long_src/errors_handl.c \
-			so_long_src/game_loop.c \
-			libft/get_next_line/get_next_line.c \
-			libft/get_next_line/get_next_line_utils.c \
-			ft_printf/libftprintf.a
-
-OBJS	= ${SRCS:.c=.o}
-
-
-
-all: $(NAME)
-
-$(NAME): $(OBJS) $(LIBFT) $(FT_PRINTF)
-		$(CC) $(OBJS) $(LIBFT) $(FT_PRINTF) $(LIBS) -o $(NAME) $(CFLAGS)
-
-$(LIBFT) :
-		make -C libft
-
-$(FT_PRINTF) :
-		make -C ft_printf
-
-%.o: %.c
-		$(CC) $(CFLAGS) $(HEADERS) -o $@ -c $<
-
-clean:
-		rm -rf $(OBJS)
-		make clean -C libft
-		make clean -C ft_printf
-
-fclean: clean
-		rm -rf $(NAME)
-		make fclean -C libft
-		make fclean -C ft_printf
-
-re: clean all
-
-.PHONY: all clean fclean re
-
-
-##LINUX###########################################
-
-
 # NAME	= so_long
-# CC		= cc -g
-# CFLAGS	= -Wextra -Wall -Werror -fsanitize=address
+# CC		= cc
+# CFLAGS	= -Wextra -Wall -Werror
 
-# LIBMLX	= /MLX42
+# LIBMLX	= /Users/riel-fas/MLX42
 # MLX_INCLUDE	= $(LIBMLX)/include/MLX42
-# MLX_LIB	= MLX42/build/libmlx42.a
+# MLX_LIB	= $(LIBMLX)/build/libmlx42.a
 
-# GLFW_INCLUDE = /home/linuxbrew/.linuxbrew/include
-# GLFW_LIB = /home/linuxbrew/.linuxbrew/lib
+# GLFW_INCLUDE = /Users/riel-fas/.brew/include
+# GLFW_LIB = /Users/riel-fas/.brew/lib
 
 # HEADERS	= -I ./include -I $(MLX_INCLUDE) -I $(GLFW_INCLUDE)
 
@@ -99,7 +29,7 @@ re: clean all
 # 			so_long_src/game_loop.c \
 # 			libft/get_next_line/get_next_line.c \
 # 			libft/get_next_line/get_next_line_utils.c \
-#  			ft_printf/libftprintf.a
+# 			ft_printf/libftprintf.a
 
 # OBJS	= ${SRCS:.c=.o}
 
@@ -132,3 +62,136 @@ re: clean all
 # re: clean all
 
 # .PHONY: all clean fclean re
+
+
+# ##LINUX###########################################
+
+
+# # NAME	= so_long
+# # CC		= cc -g
+# # CFLAGS	= -Wextra -Wall -Werror -fsanitize=address
+
+# # LIBMLX	= /MLX42
+# # MLX_INCLUDE	= $(LIBMLX)/include/MLX42
+# # MLX_LIB	= MLX42/build/libmlx42.a
+
+# # GLFW_INCLUDE = /home/linuxbrew/.linuxbrew/include
+# # GLFW_LIB = /home/linuxbrew/.linuxbrew/lib
+
+# # HEADERS	= -I ./include -I $(MLX_INCLUDE) -I $(GLFW_INCLUDE)
+
+# # LIBFT	= libft/libft.a
+# # FT_PRINTF = ft_printf/libftprintf.a
+
+# # LIBS = $(MLX_LIB) -L $(GLFW_LIB) -lglfw -ldl -pthread -lm
+
+# # SRCS	=	so_long_src/main.c \
+# # 			so_long_src/map_pars.c \
+# # 			so_long_src/map_pars_2.c \
+# # 			so_long_src/map_render.c \
+# # 			so_long_src/map_render_2.c \
+# # 			so_long_src/key_press.c \
+# # 			so_long_src/textures_in.c \
+# # 			so_long_src/map_valid.c \
+# # 			so_long_src/map_valid_2.c \
+# # 			so_long_src/errors_handl.c \
+# # 			so_long_src/game_loop.c \
+# # 			libft/get_next_line/get_next_line.c \
+# # 			libft/get_next_line/get_next_line_utils.c \
+# #  			ft_printf/libftprintf.a
+
+# # OBJS	= ${SRCS:.c=.o}
+
+
+
+# # all: $(NAME)
+
+# # $(NAME): $(OBJS) $(LIBFT) $(FT_PRINTF)
+# # 		$(CC) $(OBJS) $(LIBFT) $(FT_PRINTF) $(LIBS) -o $(NAME) $(CFLAGS)
+
+# # $(LIBFT) :
+# # 		make -C libft
+
+# # $(FT_PRINTF) :
+# # 		make -C ft_printf
+
+# # %.o: %.c
+# # 		$(CC) $(CFLAGS) $(HEADERS) -o $@ -c $<
+
+# # clean:
+# # 		rm -rf $(OBJS)
+# # 		make clean -C libft
+# # 		make clean -C ft_printf
+
+# # fclean: clean
+# # 		rm -rf $(NAME)
+# # 		make fclean -C libft
+# # 		make fclean -C ft_printf
+
+# # re: clean all
+
+# # .PHONY: all clean fclean re
+
+
+NAME	= so_long
+CC		= cc
+CFLAGS	= -Wextra -Wall -Werror
+
+LIBMLX	= /Users/riel-fas/MLX42
+MLX_INCLUDE	= $(LIBMLX)/include/MLX42
+MLX_LIB	= $(LIBMLX)/build/libmlx42.a
+
+GLFW_INCLUDE = /Users/riel-fas/.brew/include
+GLFW_LIB = /Users/riel-fas/.brew/lib
+
+HEADERS	= -I ./so_long_src -I $(MLX_INCLUDE) -I $(GLFW_INCLUDE)
+HEADER_FILES = so_long_src/so_long.h
+
+LIBFT	= libft/libft.a
+FT_PRINTF = ft_printf/libftprintf.a
+
+LIBS = $(MLX_LIB) $(LIBFT) $(FT_PRINTF) -L $(GLFW_LIB) -lglfw -ldl -pthread -lm
+
+SRCS	=	so_long_src/main.c \
+			so_long_src/map_pars.c \
+			so_long_src/map_pars_2.c \
+			so_long_src/map_render.c \
+			so_long_src/map_render_2.c \
+			so_long_src/key_press.c \
+			so_long_src/textures_in.c \
+			so_long_src/map_valid.c \
+			so_long_src/map_valid_2.c \
+			so_long_src/errors_handl.c \
+			so_long_src/game_loop.c \
+			libft/get_next_line/get_next_line.c \
+			libft/get_next_line/get_next_line_utils.c
+
+OBJS	= ${SRCS:.c=.o}
+
+all: $(LIBFT) $(FT_PRINTF) $(NAME)
+
+$(NAME): $(OBJS)
+	$(CC) $(OBJS) $(LIBS) -o $(NAME) $(CFLAGS)
+
+$(LIBFT):
+	make -C libft
+
+$(FT_PRINTF):
+	make -C ft_printf
+
+%.o: %.c $(HEADER_FILES)
+	$(CC) $(CFLAGS) $(HEADERS) -c $< -o $@
+
+clean:
+	rm -rf $(OBJS)
+	make clean -C libft
+	make clean -C ft_printf
+
+fclean: clean
+	rm -rf $(NAME)
+	make fclean -C libft
+	make fclean -C ft_printf
+
+re: fclean all
+
+.PHONY: all clean fclean re $(LIBFT) $(FT_PRINTF)
