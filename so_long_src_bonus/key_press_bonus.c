@@ -6,7 +6,7 @@
 /*   By: riel-fas <riel-fas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 14:38:04 by riel-fas          #+#    #+#             */
-/*   Updated: 2025/03/22 15:09:08 by riel-fas         ###   ########.fr       */
+/*   Updated: 2025/03/22 16:07:15 by riel-fas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,33 +44,17 @@ static int	handle_tile(t_game *game, int new_x, int new_y)
 	}
 	return (1);
 }
-#include <stdio.h>
-void move_player(t_game *game, int dx, int dy)
+
+void	update_position_and_moves(t_game *game, int new_x, int new_y)
 {
-    int new_x;
-    int new_y;
-	char *joined;
+	char	*joined;
 
-    new_x = game->map.player_x + dx;
-    new_y = game->map.player_y + dy;
-    if (!is_valid_move(game, new_x, new_y))
-        return;
-    if (game->map.grid[new_y][new_x] == 'X') // Check for enemy
-    {
-        ft_printf("You lost! You touched an enemy!\n");
-        mlx_close_window(game->mlx);
-        return;
-    }
-    if (!handle_tile(game, new_x, new_y))
-        return;
-    game->map.grid[game->map.player_y][game->map.player_x] = '0';
-    game->map.player_x = new_x;
-    game->map.player_y = new_y;
-    game->map.grid[new_y][new_x] = 'P';
-    game->moves++;
-
+	game->map.grid[game->map.player_y][game->map.player_x] = '0';
+	game->map.player_x = new_x;
+	game->map.player_y = new_y;
+	game->map.grid[new_y][new_x] = 'P';
+	game->moves++;
 	joined = ft_itoa(game->moves);
-	// joined = "MOVES : ";
 	joined = ft_strjoin_bonus("MOVES : ", joined);
 	mlx_delete_image(game->mlx, game->move_count_img);
 	game->move_count_img = mlx_put_string(game->mlx, joined, 10, 10);
@@ -78,32 +62,25 @@ void move_player(t_game *game, int dx, int dy)
 	free(joined);
 }
 
+void	move_player(t_game *game, int dx, int dy)
+{
+	int		new_x;
+	int		new_y;
 
-// void	move_player(t_game *game, int dx, int dy)
-// {
-// 	int	new_x;
-// 	int	new_y;
-
-// 	new_x = game->map.player_x + dx;
-// 	new_y = game->map.player_y + dy;
-// 	if (!is_valid_move(game, new_x, new_y))
-// 		return ;
-// 	if (game->map.grid[new_y][new_x] == 'X') // Check for enemy
-// 	{
-// 		ft_printf("You lost! You touched an enemy!\n");
-// 		mlx_close_window(game->mlx);
-// 		return;
-// 	}
-// 	if (!handle_tile(game, new_x, new_y))
-// 		return ;
-// 	game->map.grid[game->map.player_y][game->map.player_x] = '0';
-// 	game->map.player_x = new_x;
-// 	game->map.player_y = new_y;
-// 	game->map.grid[new_y][new_x] = 'P';
-// 	game->moves++;
-// 	update_render_map(game);
-// 	ft_printf("(%d, %d). Moves: %d\n", new_x, new_y, game->moves);
-// }
+	new_x = game->map.player_x + dx;
+	new_y = game->map.player_y + dy;
+	if (!is_valid_move(game, new_x, new_y))
+		return ;
+	if (game->map.grid[new_y][new_x] == 'X')
+	{
+		ft_printf("You lost! You touched an enemy!\n");
+		mlx_close_window(game->mlx);
+		return ;
+	}
+	if (!handle_tile(game, new_x, new_y))
+		return ;
+	update_position_and_moves(game, new_x, new_y);
+}
 
 void	handle_keypress(mlx_key_data_t keydata, void *param)
 {

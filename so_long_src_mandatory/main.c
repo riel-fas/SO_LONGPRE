@@ -6,7 +6,7 @@
 /*   By: riel-fas <riel-fas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 08:24:15 by riel-fas          #+#    #+#             */
-/*   Updated: 2025/03/22 15:13:03 by riel-fas         ###   ########.fr       */
+/*   Updated: 2025/03/22 15:54:44 by riel-fas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,10 @@ void	init_game(t_game *game)
 	mlx_loop_hook(game->mlx, game_loop, game);
 }
 
-void ll()
-{
-	system("leaks -q so_long" );
-}
-
 int	main(int argc, char **argv)
 {
 	t_game	game;
 
-	atexit(ll);
 	if (argc != 2)
 	{
 		write(1, "Usage: av[0] map_file.ber\n", 26);
