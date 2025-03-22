@@ -6,9 +6,9 @@ BONUS					= so_long_bonus
 CC						= cc -g
 CFLAGS					= -Wextra -Wall -Werror
 
-LIBMLX					= /MLX42
+LIBMLX					= /home/riad/MLX42
 MLX_INCLUDE				= $(LIBMLX)/include/MLX42
-MLX_LIB					= MLX42/build/libmlx42.a
+MLX_LIB					= $(LIBMLX)/build/libmlx42.a
 
 GLFW_INCLUDE 			= /home/linuxbrew/.linuxbrew/include
 GLFW_LIB 				= /home/linuxbrew/.linuxbrew/lib
@@ -21,7 +21,8 @@ HEADER_FILES_BONUS		= so_long_src_bonus/so_long_bonus.h
 LIBFT					= libft/libft.a
 FT_PRINTF 				= ft_printf/libftprintf.a
 
-LIBS 					= $(MLX_LIB) -L $(GLFW_LIB) -lglfw -ldl -pthread -lm
+LIBS 					= $(MLX_LIB) $(LIBFT) $(FT_PRINTF) -L $(GLFW_LIB) -lglfw -ldl -pthread -lm
+
 
 SRCS	=	so_long_src_mandatory/main.c \
 			so_long_src_mandatory/map_pars.c \
