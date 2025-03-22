@@ -6,7 +6,7 @@
 /*   By: riel-fas <riel-fas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 14:38:04 by riel-fas          #+#    #+#             */
-/*   Updated: 2025/03/21 15:11:42 by riel-fas         ###   ########.fr       */
+/*   Updated: 2025/03/22 11:31:38 by riel-fas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,12 @@ void	move_player(t_game *game, int dx, int dy)
 	new_y = game->map.player_y + dy;
 	if (!is_valid_move(game, new_x, new_y))
 		return ;
+	if (game->map.grid[new_y][new_x] == 'X') // Check for enemy
+	{
+		ft_printf("You lost! You touched an enemy!\n");
+		mlx_close_window(game->mlx);
+		return;
+	}
 	if (!handle_tile(game, new_x, new_y))
 		return ;
 	game->map.grid[game->map.player_y][game->map.player_x] = '0';

@@ -6,7 +6,7 @@
 /*   By: riel-fas <riel-fas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 08:44:18 by riel-fas          #+#    #+#             */
-/*   Updated: 2025/03/21 15:11:23 by riel-fas         ###   ########.fr       */
+/*   Updated: 2025/03/22 11:25:09 by riel-fas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	check_characters(t_game *game)
 			count_element(game, i, j);
 			if (game->map.grid[i][j] != 'P' && game->map.grid[i][j] != 'E'
 				&& game->map.grid[i][j] != 'C' && game->map.grid[i][j] != '0'
-				&& game->map.grid[i][j] != '1')
+				&& game->map.grid[i][j] != '1' && game->map.grid[i][j] != 'X')
 				return (0);
 			j++;
 		}

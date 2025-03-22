@@ -6,7 +6,7 @@
 /*   By: riel-fas <riel-fas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 14:33:11 by riel-fas          #+#    #+#             */
-/*   Updated: 2025/03/21 15:11:14 by riel-fas         ###   ########.fr       */
+/*   Updated: 2025/03/22 12:19:33 by riel-fas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,5 @@ void	load_assets(t_game *game)
 	load_asset(game, "textures/exit/exit.png", &game->exit_img,
 		&game->exit_count);
 	load_asset(game, "textures/0/floor.png", &game->floor_img, NULL);
+	load_asset(game, "textures/enemy/frame1.png", &game->enemy_img, NULL);
 }

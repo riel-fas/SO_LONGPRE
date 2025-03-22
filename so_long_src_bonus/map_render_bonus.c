@@ -6,7 +6,7 @@
 /*   By: riel-fas <riel-fas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:22:25 by riel-fas          #+#    #+#             */
-/*   Updated: 2025/03/21 15:11:29 by riel-fas         ###   ########.fr       */
+/*   Updated: 2025/03/22 11:30:06 by riel-fas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	render_map_elements(t_game *game, int x, int y)
 	else if (game->map.grid[y][x] == 'P')
 		game->player_instance = mlx_image_to_window(game->mlx,
 				game->player_img, x * TILE_SIZE, y * TILE_SIZE);
+	else if (game->map.grid[y][x] == 'X')
+		mlx_image_to_window(game->mlx, game->enemy_img, x * TILE_SIZE, y * TILE_SIZE);
 }
 
 static void	place_collectible(t_game *game, int x, int y)

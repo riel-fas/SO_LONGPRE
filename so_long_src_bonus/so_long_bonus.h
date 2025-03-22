@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: riel-fas <riel-fas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: riel-fas <riel-fas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 08:18:36 by riel-fas          #+#    #+#             */
-/*   Updated: 2025/03/22 09:06:09 by riel-fas         ###   ########.fr       */
+/*   Updated: 2025/03/22 12:15:18 by riel-fas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_BONUS_H
 # define SO_LONG_BONUS_H
 
-// # include "/Users/riel-fas/MLX42/include/MLX42/MLX42.h"
-#include "/home/riad/MLX42/include/MLX42/MLX42.h"
+# include "/Users/riel-fas/MLX42/include/MLX42/MLX42.h"
+// #include "/home/riad/MLX42/include/MLX42/MLX42.h"
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -55,6 +55,7 @@ typedef struct s_game
 {
 	mlx_t			*mlx;
 	mlx_image_t		*player_img;
+	mlx_image_t		*enemy_img;
 	mlx_image_t		*wall_img;
 	mlx_image_t		*collectible_img;
 	mlx_image_t		*exit_img;
@@ -69,6 +70,12 @@ typedef struct s_game
 	int				wall_count;
 	int				collectible_count;
 	int				exit_count;
+
+    mlx_image_t *enemy_frames[7]; // Array of enemy frames
+    int num_enemy_frames;         // Number of enemy frames
+    int current_enemy_frame;      // Current enemy frame index
+
+
 }		t_game;
 
 int			parse_map(t_game *game, char *map_path);
