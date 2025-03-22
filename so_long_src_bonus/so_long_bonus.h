@@ -6,7 +6,7 @@
 /*   By: riel-fas <riel-fas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 08:18:36 by riel-fas          #+#    #+#             */
-/*   Updated: 2025/03/22 12:15:18 by riel-fas         ###   ########.fr       */
+/*   Updated: 2025/03/22 15:10:29 by riel-fas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,19 @@ typedef struct s_game
 	int				collectible_count;
 	int				exit_count;
 
+	mlx_image_t *move_count_img;
+
     mlx_image_t *enemy_frames[7]; // Array of enemy frames
     int num_enemy_frames;         // Number of enemy frames
     int current_enemy_frame;      // Current enemy frame index
 
 
 }		t_game;
+
+
+void init_move_count_text(t_game *game);
+char	*ft_strjoin_bonus(char *s1, char *s2);
+
 
 int			parse_map(t_game *game, char *map_path);
 int			validate_map(t_game *game);

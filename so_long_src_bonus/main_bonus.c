@@ -6,31 +6,54 @@
 /*   By: riel-fas <riel-fas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 08:24:15 by riel-fas          #+#    #+#             */
-/*   Updated: 2025/03/21 15:11:39 by riel-fas         ###   ########.fr       */
+/*   Updated: 2025/03/22 14:53:37 by riel-fas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void	init_game(t_game *game)
+// void	init_game(t_game *game)
+// {
+// 	game->mlx = mlx_init(game->map.width * TILE_SIZE,
+// 			game->map.height * TILE_SIZE, "so_long", false);
+// 	if (!game->mlx)
+// 		exit_with_error("ERROR: Failed to initialize MLX.");
+// 	game->wall_count = 0;
+// 	game->collectible_count = 0;
+// 	game->exit_count = 0;
+// 	load_assets(game);
+// 	game->moves = 0;
+// 	render_map(game);
+// 	mlx_loop_hook(game->mlx, game_loop, game);
+// }
+
+void init_game(t_game *game)
 {
-	game->mlx = mlx_init(game->map.width * TILE_SIZE,
-			game->map.height * TILE_SIZE, "so_long", false);
-	if (!game->mlx)
-		exit_with_error("ERROR: Failed to initialize MLX.");
-	game->wall_count = 0;
-	game->collectible_count = 0;
-	game->exit_count = 0;
-	load_assets(game);
-	game->moves = 0;
-	render_map(game);
-	mlx_loop_hook(game->mlx, game_loop, game);
+    game->mlx = mlx_init(game->map.width * TILE_SIZE,
+            game->map.height * TILE_SIZE, "so_long", false);
+    if (!game->mlx)
+        exit_with_error("ERROR: Failed to initialize MLX.");
+    game->wall_count = 0;
+    game->collectible_count = 0;
+    game->exit_count = 0;
+    load_assets(game);
+    game->moves = 0;
+    render_map(game);
+    init_move_count_text(game); // Initialize move count text
+    mlx_loop_hook(game->mlx, game_loop, game);
 }
+
+void ll()
+{
+	system("leaks -q so_long_bonus" );
+}
+
 
 int	main(int argc, char **argv)
 {
 	t_game	game;
 
+	atexit(ll);
 	if (argc != 2)
 	{
 		write(1, "Usage: av[0] map_file.ber\n", 26);

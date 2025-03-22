@@ -6,7 +6,7 @@
 /*   By: riel-fas <riel-fas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 08:49:02 by riel-fas          #+#    #+#             */
-/*   Updated: 2025/03/21 15:11:49 by riel-fas         ###   ########.fr       */
+/*   Updated: 2025/03/22 15:10:05 by riel-fas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,21 @@ int	handle_window_close(t_game *game)
 	free_game(game);
 	exit(0);
 	return (0);
+}
+
+char	*ft_strjoin_bonus(char *s1, char *s2)
+{
+	size_t	len;
+	char	*copy;
+
+	if (!s1 || !s2)
+		return (NULL);
+	len = ft_strlen(s1) + ft_strlen(s2) + 1;
+	copy = malloc(len);
+	if (!copy)
+		return (NULL);
+	ft_strlcpy(copy, s1, len);
+	ft_strlcat(copy, s2, len);
+	free(s2);
+	return (copy);
 }

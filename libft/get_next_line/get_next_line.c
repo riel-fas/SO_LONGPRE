@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: riel-fas <riel-fas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: riel-fas <riel-fas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 12:30:39 by riel-fas          #+#    #+#             */
-/*   Updated: 2025/03/12 08:38:04 by riel-fas         ###   ########.fr       */
+/*   Updated: 2025/03/22 15:08:06 by riel-fas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	*read_from_file(int fd, char *stash, char *buffer)
 		if (!stash)
 			stash = ft_strdup("");
 		tmp = stash;
-		stash = ft_strjoin(tmp, buffer);
+		stash = ft_strjoin_2(tmp, buffer);
 		free(tmp);
 		if (!stash)
 			return (NULL);

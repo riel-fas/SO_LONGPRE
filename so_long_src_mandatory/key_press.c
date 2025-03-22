@@ -6,7 +6,7 @@
 /*   By: riel-fas <riel-fas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 14:38:04 by riel-fas          #+#    #+#             */
-/*   Updated: 2025/03/20 10:03:08 by riel-fas         ###   ########.fr       */
+/*   Updated: 2025/03/22 15:17:27 by riel-fas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	move_player(t_game *game, int dx, int dy)
 	game->map.grid[new_y][new_x] = 'P';
 	game->moves++;
 	update_render_map(game);
-	ft_printf("(%d, %d). Moves: %d\n", new_x, new_y, game->moves);
+	ft_printf("Moves: %d\n", game->moves);
 }
 
 void	handle_keypress(mlx_key_data_t keydata, void *param)

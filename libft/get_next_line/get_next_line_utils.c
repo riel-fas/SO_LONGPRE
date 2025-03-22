@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: riel-fas <riel-fas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: riel-fas <riel-fas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 12:37:58 by riel-fas          #+#    #+#             */
-/*   Updated: 2024/12/01 10:36:14 by riel-fas         ###   ########.fr       */
+/*   Updated: 2025/03/22 15:07:30 by riel-fas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ size_t	ft_strlen(const char *s)
 	return (x);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin_2(char const *s1, char const *s2)
 {
 	int		i;
 	int		len1;
